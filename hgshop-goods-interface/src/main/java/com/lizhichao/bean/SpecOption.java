@@ -16,7 +16,18 @@ public class SpecOption implements Serializable{
 	private int specId;
 	private int orders=0;
 	
+	/**
+	 * 属性名称
+	 */
+	private String specName;
 	
+	
+	public String getSpecName() {
+		return specName;
+	}
+	public void setSpecName(String specName) {
+		this.specName = specName;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -43,7 +54,7 @@ public class SpecOption implements Serializable{
 	@Override
 	public String toString() {
 		return "SpecOption [id=" + id + ", optionName=" + optionName + ", specId=" + specId + ", orders=" + orders
-				+ "]";
+				+ ", specName=" + specName + "]";
 	}
 	public Integer getId() {
 		return id;
@@ -70,6 +81,8 @@ public class SpecOption implements Serializable{
 	public void setOrders(int orders) {
 		this.orders = orders;
 	}
+	
+	
 	
 	
 	

@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -22,9 +23,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageInfo;
 import com.lizhichao.bean.Brand;
+import com.lizhichao.bean.Sku;
+import com.lizhichao.bean.Spec;
+import com.lizhichao.bean.SpecOption;
 import com.lizhichao.bean.Spu;
 import com.lizhichao.bean.SpuVo;
 import com.lizhichao.service.GoodsService;
+import com.lizhichao.service.SpecService;
 
 @Controller
 @RequestMapping("goods")
@@ -32,6 +37,9 @@ public class GoodsController {
 	@Reference
 	GoodsService goodService;
 	
+
+	@Reference
+	SpecService specService;
 	
 	/**
 	 * 
@@ -136,5 +144,71 @@ public class GoodsController {
 		
 		
 	}
+	
+	@RequestMapping("skulist")
+	public String skulist(HttpServletRequest request ,
+			@RequestParam (defaultValue="1") int page,Sku sku) {
+		PageInfo<Sku> listSku = goodService.listSku(page, sku);
+		request.setAttribute("pageInfo", listSku);
+		return "sku/list";
+	}
+	
+	@RequestMapping("skuDetail")
+	public String skulist(HttpServletRequest request ,int id) {
+		Sku sku = goodService.getSku(id);
+		request.setAttribute("sku", sku);
+		return "sku/detail";
+	}
+	
+	/**
+	 * 跳转到sku添加页面
+	 * @param request
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("toaddSku")
+	public String toaddSku(HttpServletRequest request ,int spuId) {
+		// 获取要添加的商品
+		Spu spu = goodService.getSpu(spuId);
+		request.setAttribute("spu", spu);
+		
+	/*	// 获取所有的品牌
+		List<Brand> brands = goodService.getAllBrands();
+		request.setAttribute("brands", brands);*/
+		
+		// 属性名称
+		List<Spec> list = specService.listAll();
+		System.out.println("list is " + list);
+		request.setAttribute("specs", list);
+		
+		return "sku/add";
+	}
+	
+	@RequestMapping("addSku")
+	@ResponseBody
+	public String addSku(HttpServletRequest request ,Sku sku,int[] specIds,@RequestParam(value="specOptionIds") int[] specOptionIds) {
+		// 保存给sku的所有的属性以及属性值
+		List<SpecOption> specs = new ArrayList<>();
+		
+		System.out.println("specIds + " + specIds.length + " and specOptionIds is " + specOptionIds.length);
+		
+		
+		for (int i = 0; i < specIds.length && i < specOptionIds.length; i++) {
+			int j = specIds[i];
+			SpecOption specOption = new SpecOption();
+			//属性的id
+			specOption.setSpecId(specIds[i]);
+			// 具体的属性值 的id
+			specOption.setId(specOptionIds[i]);
+			specs.add(specOption);
+		}
+		//存放属性的数据
+		sku.setSpecs(specs);
+		int addSku = goodService.addSku(sku);
+		
+		return addSku>0?"success":"failed";
+	}
+	
+	
 	
 }

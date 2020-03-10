@@ -40,5 +40,9 @@
 	</select>
 
 	<!-- int delete(int id); -->
+	
+	<select id="findById" resultMap="spuMaper">
+		SELECT * from hg_spu  WHERE id=#{value}
+	</select>
 
 </mapper>

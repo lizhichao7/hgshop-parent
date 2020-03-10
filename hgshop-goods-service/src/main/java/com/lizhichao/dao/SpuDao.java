@@ -15,4 +15,6 @@ public interface SpuDao {
 	List<Spu> list(SpuVo vo);
 
 	int delete(int id);
+	
+	Spu findById(int id);
 }

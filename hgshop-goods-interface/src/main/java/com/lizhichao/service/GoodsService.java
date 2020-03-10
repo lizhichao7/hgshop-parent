@@ -5,6 +5,7 @@ import java.util.List;
 import com.github.pagehelper.PageInfo;
 import com.lizhichao.bean.Brand;
 import com.lizhichao.bean.Category;
+import com.lizhichao.bean.Sku;
 import com.lizhichao.bean.Spu;
 import com.lizhichao.bean.SpuVo;
 /**
@@ -38,5 +39,16 @@ public interface GoodsService {
 	int addSpu(Spu spu);
 	int updateSpu(Spu spu);
 	int deleteSpu(int id);
+	Spu getSpu(int id);
 	int deleteSpuBatch(int[] id);
+	
+	// sku的管理
+	PageInfo<Sku>  listSku(int page,Sku sku);
+	int addSku(Sku sku);
+	Sku getSku(int id);//获取详情
+	int updateSku(Sku sku);
+	int deleteSku(int id);
+	int deleteSkuBatch(int[] id);
+		
+		
 }

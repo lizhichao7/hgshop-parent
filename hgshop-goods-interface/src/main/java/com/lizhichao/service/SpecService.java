@@ -1,5 +1,7 @@
 package com.lizhichao.service;
 
+import java.util.List;
+
 import com.github.pagehelper.PageInfo;
 import com.lizhichao.bean.Spec;
 /**
@@ -9,6 +11,14 @@ import com.lizhichao.bean.Spec;
  */
 public interface SpecService {
 	PageInfo<Spec> list(String name,int page);
+	
+	/**
+	 * 获取所有的规格名称
+	 * @param name
+	 * @param page
+	 * @return
+	 */
+	List<Spec> listAll();
 	
 	int add(Spec spec);
 	

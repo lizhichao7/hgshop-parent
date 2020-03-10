@@ -22,6 +22,10 @@
    		</where>
    		ORDER BY id
    	</select>
+   	
+   	<select id="listAll" resultType="Spec">
+   		select id, spec_name as specName from hg_spec ORDER BY spec_name
+   	</select>
 
 	<!-- int addSpec(Spec spec); -->
 	<insert id="addSpec" useGeneratedKeys="true" keyColumn="id" keyProperty="id">

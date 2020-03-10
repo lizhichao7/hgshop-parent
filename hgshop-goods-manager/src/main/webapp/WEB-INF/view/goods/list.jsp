@@ -39,6 +39,7 @@
 			<td><button type="button" class="btn btn-success">详情</button>
 				<button type="button" class="btn btn-danger">删除</button>
 				<button type="button" class="btn btn-warning">修改</button>
+				<button type="button" class="btn btn-warning" onclick="addSku(${spu.id})">添加sku</button>
 				<a target="_blank"  href="/goods/down?filename=${spu.smallPic}" >下载小图</a>
 			</td>
 		</tr>
@@ -49,5 +50,11 @@
 <script>
 	function toAdd(){
 		$("#main").load("/goods/toadd");
+	}
+	
+	
+	function addSku(id){
+		//添加sku
+		$("#main").load("/goods/toaddSku?spuId="+id);
 	}
 </script>
