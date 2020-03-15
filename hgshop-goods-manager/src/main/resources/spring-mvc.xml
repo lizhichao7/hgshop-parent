@@ -10,7 +10,7 @@
 
 	<!-- 扫描器 -->
 	<context:component-scan
-		base-package="com.lizhichao.controller,com.lizhichao.config" />
+		base-package="com.lizhichao.controller,com.lizhichao.config,com.lizhichao.listener" />
 	<!-- 视图解析图 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

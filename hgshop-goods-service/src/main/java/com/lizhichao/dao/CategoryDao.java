@@ -22,11 +22,7 @@ public interface CategoryDao {
 	 */
 	int delete(Integer id);
 
-	/**
-	 * 修改
-	 * @param category
-	 * @return
-	 */
+	//修改
 	int update(Category category);
 	
 	

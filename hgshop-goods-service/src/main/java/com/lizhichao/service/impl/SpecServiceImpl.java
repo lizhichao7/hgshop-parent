@@ -25,7 +25,8 @@ public class SpecServiceImpl implements SpecService{
 	public PageInfo<Spec> list(String name, int page) {
 		// TODO Auto-generated method stub
 		PageHelper.startPage(page, 3);
-		return new PageInfo<Spec>(specDao.list(name));
+		PageInfo<Spec> pageInfo = new PageInfo<Spec>(specDao.list(name));
+		return pageInfo;
 		
 	}
 

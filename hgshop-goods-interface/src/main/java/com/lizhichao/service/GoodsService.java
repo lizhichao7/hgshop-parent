@@ -15,7 +15,7 @@ import com.lizhichao.bean.SpuVo;
  */
 public interface GoodsService {
 	 
-	
+	List<Brand> getAllBrands( );
 	
 	int addCategory(Category category);
 	int updateCategory(Category category);
@@ -27,7 +27,7 @@ public interface GoodsService {
 	 * @return
 	 */
 	PageInfo<Category> listCategory( String firstChar,int page);
-	List<Brand> getAllBrands( );
+	
 	/**
 	 * 以树的形式显示列表
 	 * @return
@@ -49,6 +49,13 @@ public interface GoodsService {
 	int updateSku(Sku sku);
 	int deleteSku(int id);
 	int deleteSkuBatch(int[] id);
+	
+	/**
+	 * 根据spu 获取所有的sku
+	 * @param spuId
+	 * @return
+	 */
+	List<Sku>  listSkuBySpu(int spuId);
 		
 		
 }

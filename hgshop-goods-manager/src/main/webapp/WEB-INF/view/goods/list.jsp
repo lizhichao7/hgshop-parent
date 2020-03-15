@@ -45,6 +45,13 @@
 		</tr>
 	</c:forEach>
 	
+	<!-- pageInfo -->
+	<tr>
+		<td colspan="3">
+			<jsp:include page="../common/page.jsp"></jsp:include>
+		</td>
+	</tr>
+	
 </table>   
 
 <script>
@@ -56,5 +63,14 @@
 	function addSku(id){
 		//添加sku
 		$("#main").load("/goods/toaddSku?spuId="+id);
+	}
+	
+	/**
+	* 分页 
+	*/
+	function goPage(pagenum){
+		
+		var url="/goods/list?page="+pagenum;
+		$("#main").load(url);
 	}
 </script>

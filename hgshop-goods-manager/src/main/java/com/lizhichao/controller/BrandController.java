@@ -13,11 +13,7 @@ import com.lizhichao.bean.Brand;
 import com.lizhichao.service.BrandService;
 
 
-/**
- * 品牌管理
- * @author 李志超
- *
- */
+//品牌管理
 @Controller
 @RequestMapping("brand")
 public class BrandController {

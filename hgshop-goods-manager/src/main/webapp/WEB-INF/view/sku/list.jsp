@@ -30,7 +30,8 @@
 	  				<fmt:formatDate  value="${sku.createTime}" pattern="yyyy-MM-dd"/> 
 	  			
 	  			</td>
-	  			
+	  			<td>${sku.costPrice}</td>
+	  			<td>${sku.spu.goodsName}</td>
 	  			<td>${sku.spu.brand.name}</td>
 	  			<td>${sku.spu.category.name}</td>
 	  			<td>
@@ -40,11 +41,27 @@
 	  			</td>
 	  		</tr>
 	  	</c:forEach>
+	  	
+	  	<!-- pageInfo -->
+		<tr>
+			<td colspan="3">
+				<jsp:include page="../common/page.jsp"></jsp:include>
+			</td>
+		</tr>
 	  </table>
 </div>
 
 <script>
 	function goDetail(id){
 		$("#main").load("/goods/skuDetail?id="+id)
+	}
+	
+	/**
+	* 分页 
+	*/
+	function goPage(pagenum){
+		
+		var url="/goods/skulist?page="+pagenum;
+		$("#main").load(url);
 	}
 </script>

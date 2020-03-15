@@ -19,7 +19,7 @@
 	</bean>
 	
 	<context:component-scan
-	base-package="com.lizhichao.config" />
+	base-package="com.lizhichao.config,com.lizhichao.utils" />
 		
 	<!-- 视图解析图 -->
 

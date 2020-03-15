@@ -7,12 +7,8 @@ import org.apache.ibatis.annotations.Select;
 import com.lizhichao.bean.Brand;
 
 public interface BrandDao {
-	/**
-	 * 品牌查询
-	 * @param firstChar
-	 * @param page
-	 * @return
-	 */
+	
+	//品牌查询
 	List<Brand> listBrand( String firstChar); 
 	
 	
@@ -21,10 +17,7 @@ public interface BrandDao {
 	int deleteBrand(Integer id);
 	Brand findBrand(Integer id);
 	
-	/**
-	 * 获取所有的品牌
-	 * @return
-	 */
+	//获取所有的品牌
 	@Select("SELECT id,name,first_char as firstChar "
 			+ " FROM hg_brand "
 			+ "where deleted_flag=0"

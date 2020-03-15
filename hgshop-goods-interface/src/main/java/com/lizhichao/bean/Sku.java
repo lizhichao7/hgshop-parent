@@ -17,6 +17,21 @@ public class Sku implements Serializable{
 	private int stockCount          ;
 	private String barcode              ;
 	private String image                ;
+	
+	private int status               ;
+	private Date createTime          ;
+	private Date updateTime          ;
+	private  BigDecimal costPrice           ;
+	private BigDecimal marketPrice         ;
+	private String spuId               ;
+	private String cartThumbnail       ;
+	
+	// 存放的属性列表以及属性列表的值
+	private List<SpecOption>  specs;// 
+	
+	
+	private Spu spu              ;
+	
 	public String getSellPoint() {
 		return sellPoint;
 	}
@@ -26,18 +41,9 @@ public class Sku implements Serializable{
 	}
 
 
-	private int status               ;
-	private Date createTime          ;
-	private Date updateTime          ;
-	private  BigDecimal costPrice           ;
-	private BigDecimal marketPrice         ;
-	private String spuId               ;
-	private String cartThumbnail       ;
 	
-	private Spu spu              ;
 	
-	// 存放的属性列表以及属性列表的值
-	private List<SpecOption>  specs;// 
+
 	
 
 	public List<SpecOption> getSpecs() {
@@ -202,6 +208,7 @@ public class Sku implements Serializable{
 	}
 	
 
+	
 	
 	
 }

@@ -22,6 +22,7 @@ public interface SkuDao {
 	//添加对应sku的属性值
 	int addSkuSpec(@Param("skuId") int skuId,@Param("so") SpecOption so);
 	
-	
+	//获取一个sku的列表  根据spu
+	List<Sku> listBySpu(int spuId);
 	
 }

@@ -22,11 +22,7 @@ public class SpecController {
 	@Reference
 	SpecService specService;
 	
-	/**
-	 * 进入规格的列表
-	 * @param page
-	 * @return
-	 */
+	//进入规格的列表
 	@RequestMapping("list")
 	public String list(HttpServletRequest request,
 			@RequestParam(defaultValue="1") int page,
@@ -39,13 +35,7 @@ public class SpecController {
 		return "spec/list";
 	}
 	
-	/**
-	 * 添加
-	 * @param request
-	 * @param page
-	 * @param name
-	 * @return
-	 */
+	//添加
 	@RequestMapping("add")
 	@ResponseBody
 	public String add(HttpServletRequest request,Spec spec) {
@@ -72,13 +62,7 @@ public class SpecController {
 	}
 	
 	
-	
-	/**
-	 * 用于修改数据时候的回显
-	 * @param request
-	 * @param id 规格id
-	 * @return
-	 */
+	//用于修改数据时候的回显  规格id
 	@RequestMapping("getSpec")
 	@ResponseBody
 	public Spec getSpec(HttpServletRequest request, int id){
@@ -86,13 +70,7 @@ public class SpecController {
 		
 	}
 	
-	
-	/**
-	 * 删除规格
-	 * @param request
-	 * @param id  规格的id
-	 * @return
-	 */
+	//删除规格 删除规格
 	@RequestMapping("delSpec")
 	@ResponseBody
 	public String delSpec(HttpServletRequest request,int id) {
@@ -101,12 +79,7 @@ public class SpecController {
 		return delNum>0?"success":"false";
 	}
 	
-	/**
-	 * 删除规格
-	 * @param request
-	 * @param id  规格的id
-	 * @return
-	 */
+	//删除规格
 	@RequestMapping("delSpecBatch")
 	@ResponseBody
 	public String delSpecBatch(HttpServletRequest request,@RequestParam(name="ids[]") int[] ids) {

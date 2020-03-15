@@ -41,13 +41,7 @@ public class GoodsController {
 	@Reference
 	SpecService specService;
 	
-	/**
-	 * 
-	 * @param request
-	 * @param page  页码
-	 * @param spuVo 查询条件
-	 * @return
-	 */
+	//列表
 	@RequestMapping("list")
 	public String list(HttpServletRequest request ,
 			@RequestParam (defaultValue="1") int page,
@@ -69,9 +63,7 @@ public class GoodsController {
 	@ResponseBody
 	public String add(HttpServletRequest request,Spu spu,@RequestParam(value="file") MultipartFile file ) throws IllegalStateException, IOException {
 		
-		/**
-		 * 返回的上传文件存放的物理地址
-		 */
+		//返回的上传文件存放的物理地址
 		String filePath=processFile(file);
 		// 可以根据 这个地址下载
 		spu.setSmallPic(filePath);
@@ -112,13 +104,7 @@ public class GoodsController {
 	
 	}
 	
-	/**
-	 *  上传文件
-	 * @param file
-	 * @return
-	 * @throws IllegalStateException
-	 * @throws IOException
-	 */
+	//上传文件
 	private String processFile(MultipartFile file) throws IllegalStateException, IOException {
 
 		// 原来的文件名称
@@ -160,12 +146,7 @@ public class GoodsController {
 		return "sku/detail";
 	}
 	
-	/**
-	 * 跳转到sku添加页面
-	 * @param request
-	 * @param id
-	 * @return
-	 */
+	//跳转到sku添加页面
 	@RequestMapping("toaddSku")
 	public String toaddSku(HttpServletRequest request ,int spuId) {
 		// 获取要添加的商品
@@ -186,9 +167,18 @@ public class GoodsController {
 	
 	@RequestMapping("addSku")
 	@ResponseBody
-	public String addSku(HttpServletRequest request ,Sku sku,int[] specIds,@RequestParam(value="specOptionIds") int[] specOptionIds) {
+	public String addSku(HttpServletRequest request ,
+			Sku sku,int[] specIds,
+			@RequestParam(value="specOptionIds") int[] specOptionIds,
+			@RequestParam("thumbnail") MultipartFile thumbnail,
+			@RequestParam("imageFile") MultipartFile image
+			) throws IllegalStateException, IOException {
 		// 保存给sku的所有的属性以及属性值
 		List<SpecOption> specs = new ArrayList<>();
+		
+		//处理图片
+		sku.setCartThumbnail( this.processFile(thumbnail));
+		sku.setImage(processFile(image));
 		
 		System.out.println("specIds + " + specIds.length + " and specOptionIds is " + specOptionIds.length);
 		
@@ -207,8 +197,7 @@ public class GoodsController {
 		int addSku = goodService.addSku(sku);
 		
 		return addSku>0?"success":"failed";
+	
 	}
-	
-	
 	
 }

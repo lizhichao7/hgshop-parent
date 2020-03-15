@@ -22,6 +22,11 @@
 	<select id="list" resultMap="skuMapper">
 		SELECT * FROM hg_sku ORDER BY spu_id DESC,id DESC
 	</select>
+	
+	<!-- 获取sku -->
+	<select id="listBySpu" resultMap="skuMapper">
+		SELECT *, id as detailId FROM hg_sku WHERE spu_id=${value} ORDER BY id DESC
+	</select>
 
 	
 <!-- 	Sku get(int id); -->
@@ -41,7 +46,12 @@
 	</select>
 	
 	<insert id="addSku" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-		insert into hg_sku(spu_id,title,sell_point,price,create_time) values(#{spuId},#{title},#{sellPoint},#{price},now())
+	insert into hg_sku(spu_id,title,sell_point,price,market_price,
+	       cost_price,stock_count,cart_thumbnail,image,barcode,
+	       status,create_time,update_time) 
+		 values(#{spuId},#{title},#{sellPoint},#{price},#{marketPrice},
+	       #{costPrice},#{stockCount},#{cartThumbnail},#{image},#{barcode},
+	       1,now(),now())
 	</insert>
 
 
